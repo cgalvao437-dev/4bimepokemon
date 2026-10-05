@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<title>Pokédex</title>
+</head>
+
+<body bgcolor="#eeeeee" marginwidth="0" marginheight="0">
+<table width="100%" bgcolor="#e92735" cellpadding="15">
+<tr>
+<td>
+<font color="white" size="4">
+● Pokédex
+</font>
+</td>
+</tr>
+</table>
+<br>
+
+<table width="650" align="center" bgcolor="white"
+cellpadding="20" border="1">
+
+<tr>
+<td align="center">
+
+<font size="6">
+Pesquisar Pokémon
+</font>
+
+<br><br>
+
+<input
+type="text"
+id="pokemon"
+value="Pikachu"
+size="55"
+>
+
+<input
+type="button"
+value="Buscar"
+onclick="buscarPokemon()"
+>
+
+</td>
+</tr>
+
+</table>
+
+
+<br>
+
+
+<table width="650" align="center" bgcolor="white"
+cellpadding="15" border="1">
+
+<tr>
+<td align="center">
+
+<font size="6">
+<span id="nome">Pikachu #25</span>
+</font>
+
+<br><br>
+
+>
+<img
+id="imagem"
+width="280"
+height="280"
+>
+
+
+<hr>
+
+<table width="100%" cellpadding="10">
+
+<tr>
+
+<td align="center" width="33%">
+
+<font size="4">
+Tipo
+</font>
+
+<br><br>
+
+<table bgcolor="#2879df" cellpadding="5">
+<tr>
+<td>
+<font color="white">
+<span id="tipo">
+electric
+</span>
+</font>
+</td>
+</tr>
+</table>
+
+</td>
+
+
+<td align="center" width="33%">
+
+<font size="4">
+Altura
+</font>
+
+<br>
+
+<span id="altura">
+0.4 m
+</span>
+
+</td>
+
+
+<td align="center" width="33%">
+
+<font size="4">
+Peso
+</font>
+
+<br>
+
+<span id="peso">
+6 kg
+</span>
+
+</td>
+
+</tr>
+
+</table>
+
+
+<br>
+
+
+<font size="4">
+Status
+</font>
+
+<br><br>
+
+
+<table width="100%">
+<tr>
+<td>
+HP:
+<span id="hp">35</span>
+</td>
+</tr>
+
+<tr>
+<td>
+
+<table width="100%" bgcolor="#dddddd"
+cellpadding="0">
+<tr>
+<td
+id="barra-hp"
+bgcolor="#e6323e"
+width="35%"
+align="center"
+>
+<font color="white">
+35
+</font>
+</td>
+
+<td width="65%">
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+
+<br>
+
+
+<table width="100%">
+<tr>
+<td>
+Ataque:
+<span id="ataque">55</span>
+</td>
+</tr>
+
+<tr>
+<td>
+
+<table width="100%" bgcolor="#dddddd"
+cellpadding="0">
+<tr>
+
+<td
+id="barra-ataque"
+bgcolor="#e9b900"
+width="55%"
+align="center"
+>
+<font color="white">
+55
+</font>
+</td>
+
+<td width="45%">
+</td>
+
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+
+<br>
+
+<table width="100%">
+<tr>
+<td>
+Defesa:
+<span id="defesa">40</span>
+</td>
+</tr>
+
+<tr>
+<td>
+
+<table width="100%" bgcolor="#dddddd"
+cellpadding="0">
+<tr>
+
+<td
+id="barra-defesa"
+bgcolor="#21a9c7"
+width="40%"
+align="center"
+>
+<font color="white">
+40
+</font>
+</td>
+
+<td width="60%">
+</td>
+
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+
+<br>
+
+<table width="100%">
+<tr>
+<td>
+Velocidade:
+<span id="velocidade">90</span>
+</td>
+</tr>
+
+<tr>
+<td>
+
+<table width="100%" bgcolor="#dddddd"
+cellpadding="0">
+<tr>
+
+<td
+id="barra-velocidade"
+bgcolor="#21a952"
+width="90%"
+align="center"
+>
+<font color="white">
+90
+</font>
+</td>
+
+<td width="10%">
+</td>
+
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+
+<br><br>
+
+
+<font size="4">
+Habilidades
+</font>
+
+<br><br>
+
+
+<span id="habilidades">
+
+<table align="center">
+<tr>
+
+<td bgcolor="#777777">
+<font color="white">
+&nbsp;static&nbsp;
+</font>
+</td>
+
+<td width="10"></td>
+
+<td bgcolor="#777777">
+<font color="white">
+&nbsp;lightning-rod&nbsp;
+</font>
+</td>
+
+</tr>
+</table>
+
+</span>
+
+</td>
+</tr>
+
+</table>
+
+
+<br><br>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
