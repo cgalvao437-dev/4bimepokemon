@@ -1,103 +1,90 @@
 async function buscarPokemon() {
+    const nome = document.getElementById("pokemon").value
+        .trim().toLowerCase();
 
-    const nomePokemon = document
-    .getElementById("pokemon")
-    .value
-    .toLowerCase()
-    .trim();
-    
-    
-    const resposta = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${nomePokemon}`
-    );
-    
-    
-    if (!resposta.ok) {
-    
-    alert("Pokémon não encontrado!");
-    
-    return;
+    if (nome === "") {
+        alert("Digite o nome de um Pokémon!");
+        return;
     }
-    
-    
-    const pokemon = await resposta.json();
-   
-    document.getElementById("nome").textContent =
-    pokemon.name + " #" + pokemon.id;
-    
-    document.getElementById("imagem").src =
-    pokemon.sprites.other["official-artwork"].front_default;
-    
-    document.getElementById("tipo").textContent =
-    pokemon.types[0].type.name;
-    
-    document.getElementById("altura").textContent =
-    (pokemon.height / 10) + " m";
-    
-    document.getElementById("peso").textContent =
-    (pokemon.weight / 10) + " kg";
-    
-    const hp = pokemon.stats[0].base_stat;
-    const ataque = pokemon.stats[1].base_stat;
-    const defesa = pokemon.stats[2].base_stat;   
-    const velocidade = pokemon.stats[5].base_stat;
-   
-    document.getElementById("hp").textContent = hp; 
-  
-    document.getElementById("ataque").textContent = ataque;   
-    document.getElementById("defesa").textContent = defesa; 
-  
-    document.getElementById("velocidade").textContent = velocidade;
-  
-    document.getElementById("barra-hp").width =
-    hp + "%";  
-    document.getElementById("barra-hp").textContent =
-    hp;
-   
-    document.getElementById("barra-ataque").width =
-    ataque + "%";
-    document.getElementById("barra-ataque").textContent =
-    ataque;
-    
-    document.getElementById("barra-defesa").width =
-    defesa + "%";  
-    document.getElementById("barra-defesa").textContent =
-    defesa;
-   
-    document.getElementById("barra-velocidade").width =
-    velocidade + "%";
-    document.getElementById("barra-velocidade").textContent =
-    velocidade;
-    
-    let textoHabilidades = "";
-    
-    
-    pokemon.abilities.forEach(function(item) {
-    
-    textoHabilidades +=
-    "<table align='center' cellpadding='5'>" +
-    "<tr>" +
-    "<td bgcolor='#777777'>" +
-    "<font color='white'>" +
-    "&nbsp;" + item.ability.name + "&nbsp;" +
-    "</font>" +
-    "</td>" +
-    "</tr>" +
-    "</table>" +
-    "<br>";
-    
-    });
-    
-    
-    document.getElementById("habilidades").innerHTML =
-    textoHabilidades;
-    
+
+    try {
+        const resposta = await fetch(
+            "https://pokeapi.co/api/v2/pokemon/" + nome
+        );
+
+        if (!resposta.ok) {
+            throw new Error("Pokemon não encontrado");
+        }
+
+        const pokemon = await resposta.json();
+
+        document.getElementById("nome").textContent =
+            pokemon.name.charAt(0).toUpperCase() +
+            pokemon.name.slice(1) + " #" + pokemon.id;
+
+        document.getElementById("imagem").src =
+            pokemon.sprites.other["official-artwork"].front_default ||
+            pokemon.sprites.front_default;
+
+        document.getElementById("tipo").innerHTML =
+            pokemon.types.map(function(item) {
+                return '<span class="badge bg-primary me-1">' +
+                    item.type.name + '</span>';
+            }).join("");
+
+        document.getElementById("altura").textContent =
+            (pokemon.height / 10).toFixed(1) + " m";
+
+        document.getElementById("peso").textContent =
+            (pokemon.weight / 10).toFixed(1) + " kg";
+
+        const nomes = {
+            hp: "HP",
+            attack: "Ataque",
+            defense: "Defesa",
+            speed: "Velocidade"
+        };
+
+        pokemon.stats.forEach(function(item) {
+            const chave = item.stat.name;
+
+            if (nomes[chave]) {
+                let id = chave;
+
+                if (chave === "attack") id = "ataque";
+                if (chave === "defense") id = "defesa";
+                if (chave === "speed") id = "velocidade";
+
+                const valor = item.base_stat;
+
+                document.getElementById("label" + id).textContent =
+                    nomes[chave] + ": " + valor;
+
+                document.getElementById("barra" + id).style.width =
+                    Math.min(valor, 100) + "%";
+
+                document.getElementById("barra" + id).textContent =
+                    valor;
+            }
+        });
+
+        document.getElementById("habilidades").innerHTML =
+            pokemon.abilities.map(function(item) {
+                return '<span class="badge bg-secondary me-1">' +
+                    item.ability.name + '</span>';
+            }).join("");
+
+    } catch (erro) {
+        alert("Pokémon não encontrado! Verifique o nome e tente novamente.");
     }
-    
-    
-    
-    window.onload = function() {
-    
-    buscarPokemon();
-    
-    };
+}
+
+document.getElementById("pokemon").addEventListener("keydown",
+    function(event) {
+        if (event.key === "Enter") {
+            buscarPokemon();
+        }
+    }
+);
+
+buscarPokemon();

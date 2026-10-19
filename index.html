@@ -1,348 +1,131 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Pokédex</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body bgcolor="#eeeeee" marginwidth="0" marginheight="0">
-<table width="100%" bgcolor="#e92735" cellpadding="15">
-<tr>
-<td>
-<font color="white" size="4">
-● Pokédex
-</font>
-</td>
-</tr>
-</table>
-<br>
+<body class="bg-light">
+
+    <nav class="navbar navbar-dark bg-danger">
+        <div class="container">
+            <span class="navbar-brand">Pokédex</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+
+                        <h3 class="text-center mb-3">
+                            Pesquisar Pokémon
+                        </h3>
+
+                        <div class="input-group">
+                            <input type="text" id="pokemon"
+                                   class="form-control" value="Pikachu">
+
+                            <button class="btn btn-danger"
+                                    onclick="buscarPokemon()">
+                                Buscar
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+
+                        <h3 class="text-center" id="nome">
+                            Pikachu #25
+                        </h3>
+
+                        <div class="text-center">
+                            <img id="imagem"
+                                 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+                                 width="220" height="220"
+                                 alt="Pokémon">
+                        </div>
+
+                        <hr>
+
+                        <h6 class="text-center">Tipo</h6>
+                        <div class="text-center mb-3" id="tipo"></div>
+
+                        <div class="row text-center mb-4">
+                            <div class="col-6">
+                                <b>Altura</b>
+                                <p id="altura">0.4 m</p>
+                            </div>
+
+                            <div class="col-6">
+                                <b>Peso</b>
+                                <p id="peso">6 kg</p>
+                            </div>
+                        </div>
+
+                        <h5 class="text-center mb-3">Status</h5>
+
+                        <div class="mb-3">
+                            <label id="labelhp">HP: 35</label>
+                            <div class="progress">
+                                <div id="barrahp"
+                                     class="progress-bar bg-danger"
+                                     style="width:35%">35</div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label id="labelataque">Ataque: 55</label>
+                            <div class="progress">
+                                <div id="barraataque"
+                                     class="progress-bar bg-warning"
+                                     style="width:55%">55</div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label id="labeldefesa">Defesa: 40</label>
+                            <div class="progress">
+                                <div id="barradefesa"
+                                     class="progress-bar bg-info"
+                                     style="width:40%">40</div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label id="labelvelocidade">Velocidade: 90</label>
+                            <div class="progress">
+                                <div id="barravelocidade"
+                                     class="progress-bar bg-success"
+                                     style="width:90%">90</div>
+                            </div>
+                        </div>
 
-<table width="650" align="center" bgcolor="white"
-cellpadding="20" border="1">
+                        <h5 class="text-center mt-4 mb-3">
+                            Habilidades
+                        </h5>
 
-<tr>
-<td align="center">
+                        <div class="text-center" id="habilidades"></div>
 
-<font size="6">
-Pesquisar Pokémon
-</font>
+                    </div>
+                </div>
 
-<br><br>
+            </div>
+        </div>
+    </div>
 
-<input
-type="text"
-id="pokemon"
-value="Pikachu"
-size="55"
->
-
-<input
-type="button"
-value="Buscar"
-onclick="buscarPokemon()"
->
-
-</td>
-</tr>
-
-</table>
-
-
-<br>
-
-
-<table width="650" align="center" bgcolor="white"
-cellpadding="15" border="1">
-
-<tr>
-<td align="center">
-
-<font size="6">
-<span id="nome">Pikachu #25</span>
-</font>
-
-<br><br>
-
->
-<img
-id="imagem"
-width="280"
-height="280"
->
-
-
-<hr>
-
-<table width="100%" cellpadding="10">
-
-<tr>
-
-<td align="center" width="33%">
-
-<font size="4">
-Tipo
-</font>
-
-<br><br>
-
-<table bgcolor="#2879df" cellpadding="5">
-<tr>
-<td>
-<font color="white">
-<span id="tipo">
-electric
-</span>
-</font>
-</td>
-</tr>
-</table>
-
-</td>
-
-
-<td align="center" width="33%">
-
-<font size="4">
-Altura
-</font>
-
-<br>
-
-<span id="altura">
-0.4 m
-</span>
-
-</td>
-
-
-<td align="center" width="33%">
-
-<font size="4">
-Peso
-</font>
-
-<br>
-
-<span id="peso">
-6 kg
-</span>
-
-</td>
-
-</tr>
-
-</table>
-
-
-<br>
-
-
-<font size="4">
-Status
-</font>
-
-<br><br>
-
-
-<table width="100%">
-<tr>
-<td>
-HP:
-<span id="hp">35</span>
-</td>
-</tr>
-
-<tr>
-<td>
-
-<table width="100%" bgcolor="#dddddd"
-cellpadding="0">
-<tr>
-<td
-id="barra-hp"
-bgcolor="#e6323e"
-width="35%"
-align="center"
->
-<font color="white">
-35
-</font>
-</td>
-
-<td width="65%">
-</td>
-</tr>
-</table>
-
-</td>
-</tr>
-</table>
-
-
-<br>
-
-
-<table width="100%">
-<tr>
-<td>
-Ataque:
-<span id="ataque">55</span>
-</td>
-</tr>
-
-<tr>
-<td>
-
-<table width="100%" bgcolor="#dddddd"
-cellpadding="0">
-<tr>
-
-<td
-id="barra-ataque"
-bgcolor="#e9b900"
-width="55%"
-align="center"
->
-<font color="white">
-55
-</font>
-</td>
-
-<td width="45%">
-</td>
-
-</tr>
-</table>
-
-</td>
-</tr>
-</table>
-
-
-<br>
-
-<table width="100%">
-<tr>
-<td>
-Defesa:
-<span id="defesa">40</span>
-</td>
-</tr>
-
-<tr>
-<td>
-
-<table width="100%" bgcolor="#dddddd"
-cellpadding="0">
-<tr>
-
-<td
-id="barra-defesa"
-bgcolor="#21a9c7"
-width="40%"
-align="center"
->
-<font color="white">
-40
-</font>
-</td>
-
-<td width="60%">
-</td>
-
-</tr>
-</table>
-
-</td>
-</tr>
-</table>
-
-
-<br>
-
-<table width="100%">
-<tr>
-<td>
-Velocidade:
-<span id="velocidade">90</span>
-</td>
-</tr>
-
-<tr>
-<td>
-
-<table width="100%" bgcolor="#dddddd"
-cellpadding="0">
-<tr>
-
-<td
-id="barra-velocidade"
-bgcolor="#21a952"
-width="90%"
-align="center"
->
-<font color="white">
-90
-</font>
-</td>
-
-<td width="10%">
-</td>
-
-</tr>
-</table>
-
-</td>
-</tr>
-</table>
-
-
-<br><br>
-
-
-<font size="4">
-Habilidades
-</font>
-
-<br><br>
-
-
-<span id="habilidades">
-
-<table align="center">
-<tr>
-
-<td bgcolor="#777777">
-<font color="white">
-&nbsp;static&nbsp;
-</font>
-</td>
-
-<td width="10"></td>
-
-<td bgcolor="#777777">
-<font color="white">
-&nbsp;lightning-rod&nbsp;
-</font>
-</td>
-
-</tr>
-</table>
-
-</span>
-
-</td>
-</tr>
-
-</table>
-
-
-<br><br>
-
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
-
 </html>
